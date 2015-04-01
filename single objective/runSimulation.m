@@ -1,12 +1,16 @@
 clear all
 close all
 
+matRed = [0.8784, 0, 0.2039];
+matBlue = [0, 0.6902, 0.7922];
+matGreen = [0.4118, 0.7451, 0.1569];
+
 load simulation3.mat
 baselineParams = ones(1,40)*0.5;
 trussCoords = getCoordsFromParams(baselineParams);
 [baseLineIntensity, baselineFreq] = getIntensity(trussCoords);
 
-figure('position',[50, 50, 1400, 1000],'color',[1, 1, 1]);
+figure('position',[111, 69, 1453, 898],'color',[1, 1, 1]);
 
 %baseline design
 subplot(2,5,1:3)
@@ -15,7 +19,7 @@ for i=1:11
     bottoms(i,:)=[trussCoords((i-1)*2+1) trussCoords((i-1)*2+24)];
     tops(i,:)=[trussCoords(i*2) trussCoords(i*2+23)];
 end
-sp1(1) = plot(trussCoords(1:23), trussCoords(24:46), 'k.', 'MarkerSize', 10);
+sp1(1) = plot(trussCoords(1:23), trussCoords(24:46), 'k.', 'MarkerSize', 20);
 sp1(2) = plot(trussCoords(2:23), trussCoords(25:46), 'k', 'LineWidth', 2);
 sp1(3) = plot(bottoms(:,1), bottoms(:,2), 'k', 'LineWidth', 2);
 sp1(4) = plot(tops(:,1),tops(:,2), 'k', 'LineWidth', 2);
@@ -26,7 +30,7 @@ axis off
 title('Phenotype','fontweight','bold','fontsize',14)
 
 subplot(2,5,6:8)
-sp2(1) = plot(0,log(baseLineIntensity), '-b', 'linewidth', 3);
+sp2(1) = plot(0,log(baseLineIntensity), '-', 'linewidth', 3, 'color', matGreen);
 axis([0 numel(simulation.history) -14 -8])
 title('Optimisation history','fontweight','bold','fontsize',14)
 ylabel('(log) Intensity (100 - 200 Hz)','fontweight','bold','fontsize',14)
@@ -47,8 +51,8 @@ title('Genotype','fontweight','bold','fontsize',14)
 
 subplot(2,5,9:10)
 hold on
-sp4(1) = plot(baselineFreq, 'linewidth', 2);
-sp4(2) = plot(0, 0, 'r', 'linewidth', 2);
+sp4(1) = plot(baselineFreq, 'linewidth', 2, 'color', matBlue);
+sp4(2) = plot(0, 0, 'r', 'linewidth', 2, 'color', matRed);
 box on
 title('Frequency response','fontweight','bold','fontsize',14)
 ylabel('PSD','fontweight','bold','fontsize',14)

@@ -1,6 +1,10 @@
 clear all
 close all
 
+matRed = [0.8784, 0, 0.2039];
+matBlue = [0, 0.6902, 0.7922];
+matGreen = [0.4118, 0.7451, 0.1569];
+
 load simulation.mat
 
 baselineParams = ones(1,40)*0.5;
@@ -17,7 +21,7 @@ for i=1:11
     bottoms(i,:)=[trussCoords((i-1)*2+1) trussCoords((i-1)*2+24)];
     tops(i,:)=[trussCoords(i*2) trussCoords(i*2+23)];
 end
-sp1(1) = plot(trussCoords(1:23), trussCoords(24:46), 'k.', 'MarkerSize', 10);
+sp1(1) = plot(trussCoords(1:23), trussCoords(24:46), 'k.', 'MarkerSize', 20);
 sp1(2) = plot(trussCoords(2:23), trussCoords(25:46), 'k', 'LineWidth', 2);
 sp1(3) = plot(bottoms(:,1), bottoms(:,2), 'k', 'LineWidth', 2);
 sp1(4) = plot(tops(:,1),tops(:,2), 'k', 'LineWidth', 2);
@@ -33,7 +37,7 @@ for i=1:11
     bottoms(i,:)=[trussCoords((i-1)*2+1) trussCoords((i-1)*2+24)];
     tops(i,:)=[trussCoords(i*2) trussCoords(i*2+23)];
 end
-sp2(1) = plot(trussCoords(1:23), trussCoords(24:46), 'k.', 'MarkerSize', 10);
+sp2(1) = plot(trussCoords(1:23), trussCoords(24:46), 'k.', 'MarkerSize', 20);
 sp2(2) = plot(trussCoords(2:23), trussCoords(25:46), 'k', 'LineWidth', 2);
 sp2(3) = plot(bottoms(:,1), bottoms(:,2), 'k', 'LineWidth', 2);
 sp2(4) = plot(tops(:,1),tops(:,2), 'k', 'LineWidth', 2);
@@ -49,7 +53,7 @@ for i=1:11
     bottoms(i,:)=[trussCoords((i-1)*2+1) trussCoords((i-1)*2+24)];
     tops(i,:)=[trussCoords(i*2) trussCoords(i*2+23)];
 end
-sp3(1) = plot(trussCoords(1:23), trussCoords(24:46), 'k.', 'MarkerSize', 10);
+sp3(1) = plot(trussCoords(1:23), trussCoords(24:46), 'k.', 'MarkerSize', 20);
 sp3(2) = plot(trussCoords(2:23), trussCoords(25:46), 'k', 'LineWidth', 2);
 sp3(3) = plot(bottoms(:,1), bottoms(:,2), 'k', 'LineWidth', 2);
 sp3(4) = plot(tops(:,1),tops(:,2), 'k', 'LineWidth', 2);
@@ -61,9 +65,9 @@ title('Minimum mass','fontweight','bold','fontsize',14)
 
 subplot(3,6,[1,2,3,7,8,9,13,14,15])
 hold on
-sp4(1) = plot(log(baseLineIntensity), baseLineMass, 'og', 'markerfacecolor', 'g');
-sp4(2) = plot(0, 0, 'ob', 'markerfacecolor', 'b');
-sp4(3) = plot(0, 0, 'or', 'markerfacecolor', 'r');
+sp4(1) = plot(log(baseLineIntensity), baseLineMass, 'o', 'markerfacecolor', matGreen, 'color', matGreen);
+sp4(2) = plot(0, 0, 'o', 'markerfacecolor', matBlue, 'color', matBlue);
+sp4(3) = plot(0, 0, 'o', 'markerfacecolor', matRed, 'color', matRed);
 axis([-14 -9 105 135])
 title('Optimisation history','fontweight','bold','fontsize',14)
 xlabel('(log) Intensity (100 - 200 Hz)','fontweight','bold','fontsize',14)
